@@ -76,7 +76,7 @@ section{position:relative}
 .hero-name .mask{display:inline-block;overflow:hidden;padding-bottom:.12em}
 @keyframes rise{to{transform:none}}
 .hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
-.hero-bottom p{max-width:430px;font-size:clamp(1.05rem,1.6vw,1.35rem);line-height:1.45;color:var(--bone)}
+.hero-bottom p{max-width:560px;font-size:clamp(1.05rem,1.6vw,1.35rem);line-height:1.45;color:var(--bone)}
 .hero-bottom p em{font-family:var(--serif);font-style:italic;color:var(--gold)}
 .cta{display:flex;align-items:center;gap:30px}
 .pill{padding:15px 28px;border-radius:999px;background:var(--bone);color:var(--ink);font-weight:400;font-size:.9rem;transition:transform .4s var(--ease),background .3s}
@@ -300,6 +300,7 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
 .dg-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--ink-2);padding:14px 10px 6px}
 .dg svg{display:block;width:100%;min-width:780px;height:auto;color:var(--bone-2);font-family:var(--sans)}
 .dg figcaption{font-size:.85rem;color:var(--bone-3);line-height:1.6;margin-top:14px;max-width:70ch}
+@media (min-width:1240px){.dg{margin-left:-110px;margin-right:-110px}}
 .dg-life{stroke:var(--line-strong);stroke-dasharray:2 6}
 .dg-box{fill:var(--ink-3);stroke:var(--line-strong)}
 .dg-name{fill:var(--bone);font-size:13px}
@@ -324,6 +325,7 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
 .dg-ext{stroke-dasharray:3 4}
 .dg-box-hot{fill:var(--ink-3);stroke:var(--gold)}
 .dg-name-l{fill:var(--bone);font-size:13px}
+.hero-note{font-size:.8rem;color:var(--bone-3);margin-top:12px;font-style:italic}
 /* reveal */
 .rv{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .rv.on{opacity:1;transform:none}
@@ -386,22 +388,23 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
 
 <main>
 <section id="hero">
-  <p class="hero-tag">Software engineer · IT risk · blockchain enthusiast</p>
+  <p class="hero-tag">Full-stack engineer · IT risk · blockchain</p>
   <h1 class="hero-name" aria-label="Azizee"><span class="mask"><span>Azizee</span></span></h1>
   <div class="hero-bottom">
-    <p>I build secure digital systems, from smart contracts to <em>mobile apps</em> to data pipelines.</p>
+    <p>I think in logic, like <em>a chess player</em>: every move has a reply, and I’d rather find the weak one myself.</p>
     <div class="cta"><a class="pill" href="#work">See the work</a><a class="ulink" href="#contact">Get in touch</a></div>
   </div>
 </section>
 
 <section id="about">
   <span class="eyebrow">About</span>
-  <p class="statement serif" id="statement">Software Engineering graduate with hands-on experience in IT audit at PwC. I build full-stack systems across blockchain, mobile and data engineering, and I still think like the people who have to trust what I ship.</p>
+  <p class="statement serif" id="statement">I love the logic nobody sees behind a system, and I stress-test what I build until it bends. At Zetrix AI and MYEG I replaced an Excel process with a website now in production, used by thousands of people.</p>
   <div class="about-grid">
     <figure class="portrait rv"><img src="images/azizee.jpg" alt="Portrait of Noor Azizee" loading="lazy"></figure>
     <div class="copy rv">
-      <p>I studied Software Engineering at UKM, then spent a stint in IT Risk Assurance at PwC looking at how real organisations secure and govern their systems.</p>
-      <p>That mix shapes how I build: I care whether it works, and I care whether it can be defended. HealthSecure, my final year project, earned the Digital Innovation Award (KID).</p>
+      <p>I have loved learning since the beginning. In matriculation I was trying to avoid biology, so I picked computer science as my elective, and that is where it hooked me. I started with pseudocode on paper and wrote code by hand in a book. Now I can write Java from memory. Wanting to learn more is what took me to UKM.</p>
+      <p>Since then, the part of coding I love most is the algorithm: the hard logic under a system. I have competed at PPKOMP three years running, with bronze in 2023, silver in 2024 and gold in 2025. Once something works, I brute-force it with bad input and heavy load to see where it bends.</p>
+      <p>My months in IT Risk Assurance at PwC taught me the ITGC framework, and I apply it in code: password configuration, batch job scheduling and disaster recovery. HealthSecure, my final year project, earned the Digital Innovation Award (KID). Away from the keyboard I play chess and keep learning.</p>
     </div>
     <div class="stats rv">
       <div class="stat"><b>3.72</b><span>CGPA, B.Eng Software Engineering</span></div>
@@ -539,7 +542,7 @@ const ICON={
  'mysql':'mysql','firebase':'firebase','mongodb':'mongodb','cloudinary':'cloudinary','git':'git','github':'github','docker':'docker','postman':'postman',
  'postgresql':'postgresql','supabase':'supabase','vite':'vite','android':'android','pandas':'pandas','google maps':'googlemaps','google maps api':'googlemaps','gemini':'googlegemini','gemini ai':'googlegemini',
  'fastapi':'fastapi','sqlite':'sqlite','chart.js':'chartdotjs','livewire':'livewire','prisma':'prisma','spotify api':'spotify','vercel':'vercel','vitest':'vitest','chrome extension':'googlechrome','ffmpeg':'ffmpeg','ethereum':'ethereum',
- 'node.js':'nodedotjs','mailgun':'mailgun','cloud functions':'firebase','web3.js':'web3dotjs','express':'express','nginx':'nginx','bootstrap':'bootstrap','electron':'electron'
+ 'node.js':'nodedotjs','datadog':'datadog','playwright':'playwright','selenium':'selenium','grafana':'grafana','jira':'jira','prometheus':'prometheus','opentelemetry':'opentelemetry','mailgun':'mailgun','cloud functions':'firebase','web3.js':'web3dotjs','express':'express','nginx':'nginx','bootstrap':'bootstrap','electron':'electron'
 };
 function pill(name){
   const slug=ICON[name.toLowerCase()];
@@ -561,29 +564,29 @@ const CASES=[
   summary:'A healthcare system where patients, not hospitals, decide who can see their records.',
   p:['HealthSecure is my final year project at UKM. Doctors request access to a patient’s records, the patient approves or revokes it through a Solidity smart contract, and every view is logged on-chain as an audit event.',
      'It has three parts: a Flutter app for patients and doctors, a React admin dashboard, and Firebase for data and notifications. The contract runs on a local Hardhat and Ganache chain.'],
-  facts:[['Context','Final year project, UKM'],['Recognition','Digital Innovation Award (KID), Sep 2025'],['Scale','21 app screens, 6 admin pages, 5 cloud functions'],['Chain','One access-control contract with on-chain audit events']],
+  facts:[['Role','Full-stack, built from scratch'],['Period','2025'],['Status','Completed'],['Context','Final year project, UKM'],['Recognition','Digital Innovation Award (KID), Sep 2025'],['Scale','21 app screens, 6 admin pages, 5 cloud functions'],['Chain','One access-control contract with on-chain audit events']],
   stack:['Flutter','Dart','React','Solidity','Hardhat','Ganache','Firebase','Gemini AI'],
   blocks:[['Patients hold the keys','A Solidity AccessControl contract keeps a patient-to-doctor permission map. Doctors request, patients approve or revoke, and each record view emits a DataViewed event for the audit trail.'],
           ['Records stay off-chain','Health data lives in Firebase. Only a record hash and a storage pointer go on-chain, so the chain proves what was recorded without exposing it.'],
           ['One app, two roles','The Flutter app gives patients their records, appointments and notifications, and gives doctors a patient list plus appointment and record views. An AI health assistant is powered by Gemini.'],
           ['An admin who sees the system','The React dashboard onboards doctors, manages roles, runs backups and embeds a Ganache block explorer. Firestore security rules and cloud functions handle access and email notifications.']]},
  {id:'secureaware',num:'01',name:'SecureAware Portal',sub:'Security awareness and phishing simulation platform',
-  gradient:'linear-gradient(135deg,#06403a 0%,#2ec4b6 100%)',images:[],
+  gradient:'linear-gradient(135deg,#06403a 0%,#2ec4b6 100%)',images:['images/secureaware-1.jpg'],note:'Illustrative mock-up with sample data. It shows the kind of dashboard the platform provides and is not a screenshot of the real system.',
   summary:'Run phishing simulations and staff assessments, then report on them in one place.',
   p:['SecureAware Portal runs security awareness programmes: simulated phishing campaigns and staff assessments, with admin dashboards and automated reporting.',
-     'It is a Node.js and PostgreSQL backend with a single-page front end, deployed with Docker behind an Nginx reverse proxy.'],
-  facts:[['Scale','110 API routes, 64 database migrations'],['Programmes','Phishing simulation and staff assessment'],['Reports','Executive and campaign reports as Word documents'],['Delivery','Dockerised, with an admin user manual']],
+     'It is a Node.js and PostgreSQL backend with a browser front end of 39 admin screens, plus the public quiz, invite and preview pages, deployed with Docker behind an Nginx reverse proxy.'],
+  facts:[['Role','Full-stack, from scratch to production'],['Period','2026'],['Status','In production'],['Built for','Zetrix AI / MYEG team, on their request to automate it'],['Scale','39 admin screens, 110 API routes, 64 database migrations'],['Programmes','Phishing simulation and staff assessment'],['Reports','Executive and campaign reports as Word documents'],['Delivery','Dockerised, with an admin user manual']],
   stack:['JavaScript','Node.js','Express','PostgreSQL','Docker','Nginx'],
   blocks:[['Two apps, one database','Employee quiz-taking runs as a separate public app that never receives admin secrets. The admin app has its own route, and Nginx splits traffic between them.'],
           ['Keys never reach the browser','Phishing campaigns run through a server-side proxy to GoPhish, so its API key stays on the server. Sessions live in PostgreSQL, with rate limiting and an audit log.'],
           ['Reports in one click','Executive summary and campaign reports are generated as Word documents from templates, with charts rendered on the server.'],
           ['Runs on a schedule','Quiz invitations, reminders, escalations and data-retention cleanup run from schedulers, and load-test scripts check the app under sustained traffic.']]},
  {id:'osslicense',num:'02',name:'OSS License Review',sub:'Open-source license risk review',
-  gradient:'linear-gradient(135deg,#2d1450 0%,#9b5de5 100%)',images:[],
+  gradient:'linear-gradient(135deg,#2d1450 0%,#9b5de5 100%)',images:['images/osslicense-1.jpg','images/osslicense-2.jpg','images/osslicense-3.jpg'],
   summary:'Turn an open-source dependency report into a clear approve-or-review decision.',
   p:['OSS License Review reads an OSS Review Toolkit (ORT) analyzer export and tells you, package by package, whether each dependency’s license is acceptable.',
-     'Every declared license becomes Approved, Approved with Controls, Risk Review Required or Denied, using a license policy encoded in a small classification engine. The app runs in the browser.'],
-  facts:[['Policy','13 license categories mapped to 4 statuses'],['Reference data','SPDX, ScanCode LicenseDB, SPDX exceptions, Blue Oak tiers'],['Input','ORT spreadsheet or JSON, or a file picked from S3'],['Tests','22 Vitest cases for the classifier']],
+     'Every declared license becomes Approved, Approved with Controls, Risk Review Required or Denied, using a license policy encoded in a small classification engine. The classification runs in the browser, and scans can be read straight from S3.'],
+  facts:[['Role','Full-stack, from scratch to production'],['Period','2026'],['Status','In production'],['Built for','Zetrix AI / MYEG team, on their request to automate it'],['Policy','13 license categories mapped to 4 statuses'],['Reference data','SPDX, ScanCode LicenseDB, SPDX exceptions, Blue Oak tiers'],['Input','ORT spreadsheet or JSON, or a file picked from S3'],['Tests','22 Vitest cases for the classifier']],
   stack:['React','Vite','Tailwind','JavaScript','Vitest'],
   blocks:[['Policy as code','Thirteen ScanCode license categories map to four review statuses, with notes like Entitlement Required and Allowlist Only where a category carries a condition.'],
           ['Reads SPDX expressions','Compound expressions are parsed properly. For OR choices the engine takes the worst-case branch, and recognised exceptions such as the Classpath exception relax the result.'],
@@ -674,6 +677,106 @@ function hsStack(){
     '<figcaption>Hardhat deploys the AccessControl contract to Ganache. The Flutter app reaches the chain over Wi-Fi and the admin dashboard over a local websocket. Profiles, files and notifications live in Firebase, with Gemini and Mailgun as external services.</figcaption></figure>';
 }
 
+
+/* ---------- shared diagram kit + per-project flowcharts ---------- */
+function dgKit(p){
+  const A=p+'A',H=p+'H';
+  const T=(x,y,cls,txt,a)=>'<text class="'+cls+'" x="'+x+'" y="'+y+'"'+(a?' text-anchor="'+a+'"':'')+'>'+txt+'</text>';
+  const R=(x,y,w,h,cls,rx)=>'<rect class="'+cls+'" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+(rx||10)+'"/>';
+  const box=(x,y,w,h,name,subs,o)=>{o=o||{};let r=R(x,y,w,h,(o.hot?'dg-box-hot':'dg-box')+(o.ext?' dg-ext':''));
+    r+=T(x+w/2,y+24,'dg-name',name,'middle');subs.forEach((t,i)=>{r+=T(x+w/2,y+42+i*16,'dg-sub',t,'middle')});return r};
+  const mk=(hot,both)=>' marker-end="url(#'+(hot?H:A)+')"'+(both?' marker-start="url(#'+(hot?H:A)+')"':'')+(hot?' style="color:var(--gold)"':'');
+  const arrow=(x1,y1,x2,y2,o)=>{o=o||{};return '<line class="dg-arrow'+(o.hot?' dg-hot':'')+'" x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'"'+mk(o.hot,o.both)+'/>'};
+  const poly=(pts,o)=>{o=o||{};return '<polyline class="dg-arrow'+(o.hot?' dg-hot':'')+'" points="'+pts+'"'+mk(o.hot,o.both)+'/>'};
+  const head=(W,Ht,label)=>'<svg viewBox="0 0 '+W+' '+Ht+'" role="img" aria-label="'+label+'"><defs>'+
+    '<marker id="'+A+'" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>'+
+    '<marker id="'+H+'" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--gold)"/></marker></defs>';
+  return {T:T,R:R,box:box,arrow:arrow,poly:poly,head:head};
+}
+function dgFig(title,lede,svg,cap){
+  return '<figure class="dg"><h4>'+title+'</h4><p class="lede">'+lede+'</p><div class="dg-scroll">'+svg+'</div><figcaption>'+cap+'</figcaption></figure>';
+}
+
+/* SecureAware Portal: how traffic reaches the two apps (mechanism only, no addresses or hostnames) */
+function ssFlow(){
+  const k=dgKit('ss'),T=k.T,R=k.R,box=k.box,arrow=k.arrow,poly=k.poly;
+  let o=k.head(1160,540,'Flowchart: employees reach the public quiz app through the Imperva edge and Nginx; admins reach the admin app only from the VPN. Both apps use PostgreSQL, and only the admin app talks to GoPhish, the mail server and registry lookups.');
+  /* docker zone */
+  o+=R(360,40,556,480,'dg-zone',14)+T(378,62,'dg-ztitle','DOCKER COMPOSE · ONE HOST');
+  /* clients + edge */
+  o+=box(16,96,160,64,'Employees',['quiz by invite link']);
+  o+=box(16,366,160,64,'Admins',['on the VPN']);
+  o+=box(212,96,120,64,'Imperva',['public edge'],{ext:1});
+  o+=T(272,184,'dg-note','/admin requests','middle')+T(272,197,'dg-note','arriving here','middle')+T(272,210,'dg-note','are denied','middle');
+  /* nginx */
+  o+=R(376,96,164,360,'dg-box');
+  o+=T(458,232,'dg-name','Nginx','middle');
+  ['single entry, port 80','real client IP from','X-Forwarded-For','re-resolves upstreams','every 10 seconds','180 s read timeout','for bulk email sends'].forEach((t,i)=>{o+=T(458,250+i*15,'dg-sub',t,'middle')});
+  o+=R(386,112,144,32,'dg-chip',16)+T(458,132,'dg-chip-t','/  →  public','middle');
+  o+=R(386,382,144,32,'dg-hot-chip',16)+T(458,402,'dg-hot-t','/admin  →  VPN only','middle');
+  /* apps */
+  o+=box(596,96,150,80,'app-public',['invite-link quizzes','holds no secrets']);
+  o+=box(596,296,150,204,'app-admin',['login and sessions','GoPhish proxy','reports (Word)','schedulers','holds the secrets'],{hot:1});
+  /* db */
+  o+=box(780,206,120,84,'PostgreSQL 16',['sessions, quizzes,','audit log']);
+  /* externals */
+  o+=box(960,350,184,44,'GoPhish',[],{ext:1});
+  o+=box(960,402,184,44,'Mail server (SMTP)',[],{ext:1});
+  o+=box(960,454,184,44,'Registry (RDAP)',[],{ext:1});
+  /* arrows */
+  o+=arrow(176,128,212,128);
+  o+=arrow(332,128,386,128);
+  o+=arrow(176,398,386,398,{hot:1})+T(281,388,'dg-lbl','VPN pool only','middle');
+  o+=arrow(530,128,596,128);
+  o+=arrow(530,398,596,398,{hot:1});
+  o+=poly('746,128 764,128 764,236 780,236');
+  o+=poly('746,330 764,330 764,262 780,262');
+  o+=arrow(746,372,960,372,{hot:1})+T(853,362,'dg-lbl','API key stays here','middle');
+  o+=arrow(746,424,960,424)+T(853,414,'dg-lbl','rate-limited mail','middle');
+  o+=arrow(746,476,960,476)+T(853,466,'dg-lbl','bot-click checks','middle');
+  o+='</svg>';
+  return dgFig('How traffic reaches the apps',
+    'One Nginx entry point splits the public quiz app from the admin app. The admin side is gated twice: by the VPN allow-list and by holding every secret itself.',
+    o,
+    'Employees reach the public quiz app through the Imperva edge and Nginx. The admin app only accepts the VPN pool, so a request that arrives through Imperva is denied on /admin. Only app-admin holds the GoPhish, mail and session secrets, and both apps share one PostgreSQL database.');
+}
+
+/* OSS License Review: how a license becomes a status (all in the browser) */
+function ossFlow(){
+  const k=dgKit('oss'),T=k.T,R=k.R,box=k.box,arrow=k.arrow;
+  let o=k.head(1000,420,'Flowchart: an ORT export uploaded or fetched from S3 is parsed in the browser, classified by a five-step engine using four reference datasets, shown on a dashboard and exported to Excel.');
+  o+=R(236,40,624,380,'dg-zone',14)+T(254,62,'dg-ztitle','BROWSER · REACT APP');
+  /* inputs */
+  o+=box(16,150,184,60,'ORT export',['.xlsx or .json']);
+  o+=box(16,232,184,60,'S3 bucket',['optional'],{ext:1});
+  /* parsers */
+  o+=box(256,130,120,160,'File parsers',['SheetJS for .xlsx','JSON for analyzer','package id +','SPDX expression']);
+  /* engine */
+  o+=box(416,80,200,200,'Classification engine',[],{hot:1});
+  ['1  parse the SPDX expression','2  look up the license category','3  OR choices: worst case wins','4  recognised exceptions relax it','5  map category to a status'].forEach((t,i)=>{o+=T(432,126+i*22,'dg-sub',t)});
+  /* reference data */
+  o+=box(416,326,200,68,'Reference data',['SPDX, ScanCode, exceptions,','Blue Oak tiers (static JSON)']);
+  /* dashboard */
+  o+=box(656,110,184,190,'Dashboard',['status counts, filters','package table','license can / must / cannot']);
+  [['Approved','#16a34a'],['Approved with Controls','#2563eb'],['Risk Review Required','#d97706'],['Denied','#dc2626']].forEach((c,i)=>{
+    o+='<circle cx="676" cy="'+(214+i*20)+'" r="4.5" fill="'+c[1]+'"/>'+T(688,218+i*20,'dg-sub',c[0]);
+  });
+  /* output */
+  o+=box(884,170,100,60,'Excel',['summary .xlsx']);
+  /* arrows */
+  o+=arrow(200,180,256,180)+T(228,170,'dg-lbl','upload','middle');
+  o+=arrow(200,262,256,262)+T(228,252,'dg-lbl','S3 SDK','middle');
+  o+=arrow(376,200,416,200);
+  o+=arrow(516,326,516,280)+T(526,308,'dg-lbl','loaded once');
+  o+=arrow(616,200,656,200,{hot:1});
+  o+=arrow(840,200,884,200);
+  o+='</svg>';
+  return dgFig('How a license gets its status',
+    'The classification runs in the React app. Its inputs are a scan export, uploaded or read from S3, and a set of reference files that ship with the app.',
+    o,
+    'An ORT export is uploaded, or fetched from an S3 bucket with credentials held only in that browser tab. The parsers pull out each package’s SPDX expression, the engine classifies it against four reference datasets, and the dashboard shows one of four statuses that can be exported to Excel.');
+}
+
 /* HealthSecure: how an access request moves (drawn from the real service calls) */
 function hsDiagram(){
   const X={d:140,p:320,c:520,f:730,a:910};
@@ -733,12 +836,12 @@ function openCase(id){
   const hero=c.images[0]?'<img decoding="async" src="'+esc(c.images[0])+'" alt="'+esc(c.name)+' screenshot">':'<span class="big">'+esc(c.num)+'</span>';
   const rest=c.images.slice(1);
   caseBody.innerHTML=
-    '<div class="case-hero" style="background:'+c.gradient+'">'+hero+'</div>'+
+    '<div class="case-hero" style="background:'+c.gradient+'">'+hero+'</div>'+(c.note?'<p class="hero-note">'+esc(c.note)+'</p>':'')+
     '<h2 id="cTitle">'+esc(c.name)+'</h2><p class="sub">'+esc(c.sub)+'</p>'+
     '<div class="case-grid"><div class="case-copy">'+c.p.map(t=>'<p>'+esc(t)+'</p>').join('')+'</div>'+
     '<dl class="facts">'+c.facts.map(f=>'<div><dt>'+esc(f[0])+'</dt><dd>'+esc(f[1])+'</dd></div>').join('')+
     '<div><dt>Stack</dt><dd class="tags">'+c.stack.map(pill).join('')+'</dd></div></dl></div>'+
-    (c.id==='healthsecure'?hsStack()+hsDiagram():'')+'<div class="case-blocks">'+c.blocks.map(b=>'<div><h4>'+esc(b[0])+'</h4><p>'+esc(b[1])+'</p></div>').join('')+'</div>'+
+    (c.id==='healthsecure'?hsStack()+hsDiagram():c.id==='secureaware'?ssFlow():c.id==='osslicense'?ossFlow():'')+'<div class="case-blocks">'+c.blocks.map(b=>'<div><h4>'+esc(b[0])+'</h4><p>'+esc(b[1])+'</p></div>').join('')+'</div>'+
     (rest.length?'<div class="case-shots">'+rest.map(r=>'<figure><img loading="lazy" decoding="async" src="'+esc(r)+'" alt=""></figure>').join('')+'</div>':'');
   caseEl.classList.add('on');caseEl.setAttribute('aria-hidden','false');caseEl.scrollTop=0;
   document.body.style.overflow='hidden';$('#cX').focus({preventScroll:true});
@@ -853,7 +956,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.rv').forEach(e=>io.observe(e));
 
 /* toolkit strip */
-const TOOLKIT=['Java','Python','C++','JavaScript','TypeScript','PHP','Golang','Dart','Kotlin','Solidity','React','Next.js','Flutter','Laravel','NodeJS','Flask','Tailwind','HTML','CSS','MySQL','Firebase','MongoDB','Cloudinary','Git','GitHub','Docker','Postman','Power BI','RapidMiner','REST API','Cloud Functions','Nginx','Mailgun','Web3.js','web3dart','GoPhish','ITGC','RMiT','TRM','IT Risk','Cybersecurity','Data Analytics','Agile/Scrum','Waterfall'];
+const TOOLKIT=['Java','Python','C++','JavaScript','TypeScript','PHP','Golang','Dart','Kotlin','Solidity','React','Next.js','Flutter','Laravel','NodeJS','Flask','Tailwind','HTML','CSS','MySQL','Firebase','MongoDB','Cloudinary','Git','GitHub','Docker','Postman','Jira','Nginx','Mailgun','Web3.js','Playwright','Selenium','Datadog','Grafana','Prometheus','OpenTelemetry'].filter(n=>ICON[n.toLowerCase()]);
 (function(){const h=TOOLKIT.map(pill).join('');$('#strip').innerHTML=h+h})();
 
 /* toolkit accordion */
@@ -864,7 +967,8 @@ const GROUPS=[
  ['Databases',['MySQL','PostgreSQL','MongoDB','Firebase','Supabase','SQLite','Prisma']],
  ['AI',['Gemini AI','Vapi','Whisper']],
  ['Blockchain',['Solidity','Hardhat','Ganache','Ethereum','Web3.js','web3dart']],
- ['DevOps & Tools',['Git','GitHub','Docker','Postman','Vercel','Cloudinary','Nginx','Mailgun']],
+ ['DevOps & Tools',['Git','GitHub','Docker','Postman','Jira','Vercel','Cloudinary','Nginx','Mailgun']],
+ ['Testing & Observability',['Playwright','Selenium','Datadog','Grafana','Prometheus','OpenTelemetry']],
  ['Data & Analytics',['Power BI','RapidMiner','Pandas','Matplotlib','BeautifulSoup','Data Analytics']],
  ['Risk & Governance',['ITGC','RMiT','TRM','IT Risk','Cybersecurity','GoPhish','Agile/Scrum','Waterfall']]
 ];
