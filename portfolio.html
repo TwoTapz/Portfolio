@@ -23,7 +23,7 @@
   --radius:14px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%}
 body{background:var(--ink);color:var(--bone);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -31,7 +31,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .serif{font-family:var(--serif);font-weight:400;letter-spacing:-.02em}
 
 /* grain */
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.05;
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.05;background-size:180px 180px;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* progress */
@@ -60,8 +60,9 @@ header.bar{position:fixed;inset:0 0 auto 0;height:72px;display:flex;align-items:
 .overlay .ov-foot a:hover{color:var(--gold)}
 
 /* moon */
-#moon{position:fixed;z-index:-1;width:min(46vw,640px);aspect-ratio:1;right:3vw;top:11vh;pointer-events:none;will-change:transform;filter:drop-shadow(0 0 70px rgba(110,190,255,.22))}
-#moon svg{width:100%;height:100%;display:block}
+#moon{position:fixed;z-index:-1;width:min(46vw,640px);aspect-ratio:1;right:3vw;top:11vh;pointer-events:none;will-change:transform,opacity}
+#moon img{width:100%;height:100%;display:block}
+#moon::before{content:"";position:absolute;inset:-22%;border-radius:50%;background:radial-gradient(circle,rgba(110,190,255,.20),transparent 62%);z-index:-1}
 
 section{position:relative}
 .wrap{padding:0 var(--gutter)}
@@ -248,26 +249,8 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="40"/></filter></svg>
 <div id="progress"></div>
-<div id="moon" aria-hidden="true"><svg viewBox="0 0 600 600">
-  <defs>
-    <filter id="lunar" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency=".014" numOctaves="5" seed="11" result="n"/>
-      <feDiffuseLighting in="n" surfaceScale="7" diffuseConstant="1.15" lighting-color="#d4e8ff" result="lit"><feDistantLight azimuth="235" elevation="52"/></feDiffuseLighting>
-      <feTurbulence type="fractalNoise" baseFrequency=".006" numOctaves="3" seed="3" result="m"/>
-      <feColorMatrix in="m" type="matrix" values="0 0 0 0 .05  0 0 0 0 .11  0 0 0 0 .24  0 0 0 -2.6 1.55" result="maria"/>
-      <feComposite in="maria" in2="lit" operator="over" result="mix"/>
-      <feBlend in="mix" in2="lit" mode="multiply"/>
-    </filter>
-    <clipPath id="disc"><circle cx="300" cy="300" r="298"/></clipPath>
-    <radialGradient id="shade" gradientUnits="userSpaceOnUse" cx="200" cy="175" r="470"><stop offset="0" stop-color="#fff" stop-opacity=".10"/><stop offset=".42" stop-color="#000" stop-opacity="0"/><stop offset=".7" stop-color="#000" stop-opacity=".55"/><stop offset=".95" stop-color="#000" stop-opacity=".95"/></radialGradient>
-  </defs>
-  <g clip-path="url(#disc)">
-    <rect width="600" height="600" filter="url(#lunar)" fill="#8fb2dc"/>
-    <rect width="600" height="600" fill="url(#shade)"/>
-  </g>
-</svg></div>
+<div id="moon" aria-hidden="true"><img src="images/moon.webp" width="768" height="768" alt="" decoding="async" fetchpriority="high"></div>
 
 <header class="bar">
   <a href="#hero" class="logo">azizee<i>.</i></a>
@@ -430,7 +413,7 @@ const ICON={
 };
 function pill(name){
   const slug=ICON[name.toLowerCase()];
-  return '<span>'+(slug?'<img loading="lazy" alt="" src="https://cdn.simpleicons.org/'+slug+'/e6efff" onerror="this.remove()">':'')+esc(name)+'</span>';
+  return '<span>'+(slug?'<img alt="" decoding="async" src="images/icons/'+slug+'.svg" onerror="this.remove()">':'')+esc(name)+'</span>';
 }
 const $=s=>document.querySelector(s);
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -444,7 +427,7 @@ PROJECTS.forEach((p,i)=>{
   el.className='card';el.tabIndex=0;el.setAttribute('role','button');el.setAttribute('aria-label','Open '+p.name);
   const img=(p.images||[]).find(x=>/\.(jpe?g|png|webp)$/i.test(x));
   el.innerHTML=
-    '<div class="shot" style="background:'+p.gradient+'">'+(img?'<img loading="lazy" src="'+esc(img)+'" alt="">':'')+
+    '<div class="shot" style="background:'+p.gradient+'">'+(img?'<img decoding="async" src="'+esc(img)+'" alt="">':'')+
     '<span class="num">'+esc(p.num)+'</span><span class="go">↗</span></div>'+
     '<h3>'+esc(p.name)+'<small>'+esc(p.num)+'</small></h3>'+
     '<p>'+esc(p.desc)+'</p>'+
@@ -463,44 +446,87 @@ $('#projCount').textContent=PROJECTS.length;
 /* pinned horizontal scroll */
 const hs=$('#hs'),bar=$('#hsBar'),count=$('#hsCount');
 const cards=[...track.querySelectorAll('.card:not(.end)')];
-let maxX=0;
+let maxX=0,stTop=0,stH=1,hsTop=0,hsH=1,docMax=1,lastOn=-1,lastIdx=-1;
 function measure(){
-  if(mobile()||reduce){hs.style.height='';track.style.transform='';return}
-  maxX=Math.max(0,track.scrollWidth-innerWidth);
-  hs.style.height=(innerHeight+maxX)+'px';
+  if(mobile()||reduce){hs.style.height='';track.style.transform='';maxX=0}
+  else{maxX=Math.max(0,track.scrollWidth-innerWidth);hs.style.height=(innerHeight+maxX)+'px'}
+  /* cache positions once so scrolling never forces layout */
+  const y=scrollY;
+  const sr=$('#statement').getBoundingClientRect();stTop=sr.top+y;stH=sr.height;
+  const hr=hs.getBoundingClientRect();hsTop=hr.top+y;hsH=hs.offsetHeight;
+  docMax=Math.max(1,document.documentElement.scrollHeight-innerHeight);
 }
+const progressEl=$('#progress'),moonEl=$('#moon');
 function onScroll(){
-  const y=scrollY,doc=document.documentElement;
-  $('#progress').style.transform='scaleX('+(y/(doc.scrollHeight-innerHeight||1))+')';
+  const y=scrollY,vh=innerHeight;
+  progressEl.style.transform='scaleX('+(y/docMax)+')';
   /* moon drifts and shrinks as you scroll */
-  const t=Math.min(1,y/innerHeight);
-  const moon=$('#moon');
-  moon.style.transform='translate('+(t*8)+'vw,'+(-t*8)+'vh) scale('+(1-t*.55)+')';
-  moon.style.opacity=y>innerHeight*1.2?Math.max(.12,1-(y-innerHeight*1.2)/innerHeight):1;
-  /* statement reveal */
-  const st=$('#statement').getBoundingClientRect();
-  const prog=Math.min(1,Math.max(0,(innerHeight*.85-st.top)/(st.height+innerHeight*.3)));
-  const on=Math.round(prog*words.length);
-  words.forEach((w,i)=>w.classList.toggle('on',i<on));
+  if(y<vh*2.4){
+    const t=Math.min(1,y/vh);
+    moonEl.style.transform='translate3d('+(t*8)+'vw,'+(-t*8)+'vh,0) scale('+(1-t*.55)+')';
+    moonEl.style.opacity=y>vh*1.2?Math.max(.12,1-(y-vh*1.2)/vh):1;
+  }
+  /* statement reveal (only touch the DOM when the count changes) */
+  if(y>stTop-vh*1.2&&y<stTop+stH+vh){
+    const top=stTop-y;
+    const prog=Math.min(1,Math.max(0,(vh*.85-top)/(stH+vh*.3)));
+    const on=Math.round(prog*words.length);
+    if(on!==lastOn){
+      if(on>lastOn){for(let i=Math.max(0,lastOn);i<on;i++)words[i].classList.add('on')}
+      else{for(let i=on;i<words.length;i++)words[i].classList.remove('on')}
+      lastOn=on;
+    }
+  }
   /* horizontal gallery */
   if(!mobile()&&!reduce&&maxX){
-    const r=hs.getBoundingClientRect();
-    const p=Math.min(1,Math.max(0,-r.top/(hs.offsetHeight-innerHeight)));
+    const p=Math.min(1,Math.max(0,(y-hsTop)/(hsH-vh)));
     track.style.transform='translate3d('+(-p*maxX)+'px,0,0)';
     bar.style.transform='scaleX('+p+')';
     const idx=Math.min(cards.length-1,Math.round(p*(cards.length-1)));
-    cards.forEach((c,i)=>c.classList.toggle('active',i===idx));
-    count.textContent=String(idx+1).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0');
+    if(idx!==lastIdx){
+      cards.forEach((c,i)=>c.classList.toggle('active',i===idx));
+      count.textContent=String(idx+1).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0');
+      lastIdx=idx;
+    }
   }
 }
 /* split statement into words */
 const stEl=$('#statement');
 stEl.innerHTML=stEl.textContent.split(' ').map(w=>'<span class="w">'+esc(w)+'</span>').join(' ');
 const words=[...stEl.querySelectorAll('.w')];
-let tick=false;
-addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(()=>{onScroll();tick=false})}},{passive:true});
+
+/* eased wheel scrolling (desktop mouse only); everything below is driven by one frame loop so the gallery never trails the page */
+const modalEl=$('#modal'),ovEl=$('#overlay');
+const smooth=!reduce&&matchMedia('(hover:hover) and (pointer:fine)').matches;
+let sPos=scrollY,target=scrollY,raf=0;
+function loop(){
+  const d=target-sPos;
+  if(Math.abs(d)<.4){sPos=target;scrollTo(0,sPos);onScroll();raf=0;return}
+  sPos+=d*.12;scrollTo(0,sPos);onScroll();raf=requestAnimationFrame(loop);
+}
+function goTo(y){target=Math.max(0,Math.min(docMax,y));if(!raf)raf=requestAnimationFrame(loop)}
+if(smooth){
+  addEventListener('wheel',e=>{
+    if(e.ctrlKey||e.defaultPrevented||modalEl.classList.contains('on')||ovEl.classList.contains('on'))return;
+    e.preventDefault();
+    let dy=e.deltaY;if(e.deltaMode===1)dy*=32;else if(e.deltaMode===2)dy*=innerHeight;
+    if(!raf){sPos=target=scrollY}
+    goTo(target+dy);
+  },{passive:false});
+  document.addEventListener('click',e=>{
+    const a=e.target.closest&&e.target.closest('a[href^="#"]');
+    if(!a||a.getAttribute('href').length<2)return;
+    const el=document.querySelector(a.getAttribute('href'));if(!el)return;
+    e.preventDefault();
+    if(!raf){sPos=scrollY}
+    goTo(el.getBoundingClientRect().top+scrollY);
+  });
+}
+/* native scrolling (scrollbar drag, keyboard, touch) */
+addEventListener('scroll',()=>{if(raf)return;sPos=target=scrollY;onScroll()},{passive:true});
 addEventListener('resize',()=>{measure();onScroll()});
 addEventListener('load',()=>{measure();onScroll()});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{measure();onScroll()});
 measure();onScroll();
 if(reduce)words.forEach(w=>w.classList.add('on'));
 
