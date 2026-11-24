@@ -218,11 +218,122 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
 .acc-body>div{overflow:hidden}
 .acc-body .chips{padding:2px 0 34px}
 
+/* path so far timeline */
+#path{padding:4vh var(--gutter) 14vh}
+.path h3{font-size:clamp(2rem,4vw,3.2rem);line-height:1.05;letter-spacing:-.02em}
+.tl{list-style:none;position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:54px}
+.tl::before{content:"";position:absolute;left:6px;right:0;top:6px;height:1px;background:var(--line)}
+.tl-fill{position:absolute;left:6px;top:6px;height:1px;width:0;background:var(--gold);transition:width 2.6s cubic-bezier(.65,0,.35,1)}
+.tl.on .tl-fill{width:calc(83.333% + 0px)}
+.tl-item{position:relative;padding:38px 18px 0 0;display:flex;flex-direction:column;gap:4px}
+.tl-item::before{content:"";position:absolute;left:0;top:0;width:13px;height:13px;border-radius:50%;border:1px solid var(--line-strong);background:var(--ink);transition:border-color .5s,background .5s,box-shadow .5s;transition-delay:calc(var(--i)*.52s)}
+.tl.on .tl-item::before{border-color:var(--gold);background:var(--gold);box-shadow:inset 0 0 0 3px var(--ink)}
+.tl.on .tl-item.now::before{animation:pulse 2.4s 3s infinite}
+.tl-item time{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.75rem;color:var(--gold)}
+.tl-item b{font-weight:400;font-size:1.02rem;line-height:1.3;color:var(--bone)}
+.tl-item small{font-size:.82rem;color:var(--bone-3);line-height:1.4}
+.tl-item{opacity:.35;transition:opacity .6s;transition-delay:calc(var(--i)*.52s)}
+.tl.on .tl-item{opacity:1}
+/* gallery case cards */
+.card.cs{flex:0 0 clamp(320px,50vw,760px)}
+.card.cs .shot{aspect-ratio:16/10}
+.card.cs h3{font-size:clamp(2.2rem,4.2vw,3.8rem)}
+.card.cs h3 small{letter-spacing:.14em}
+.card.cs p{-webkit-line-clamp:2;font-size:1rem;max-width:60ch}
+.card .more{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:11px 22px;border:1px solid var(--line-strong);border-radius:999px;font-size:.88rem;transition:background .3s,border-color .3s,color .3s}
+.card:hover .more{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+
+/* also built */
+#also{padding:6vh var(--gutter) 16vh}
+.also-head h3{font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:34px}
+.also{border-top:1px solid var(--line)}
+.also-row{display:grid;grid-template-columns:minmax(200px,1.15fr) 150px minmax(240px,2.6fr) minmax(110px,.9fr);gap:28px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:padding .5s var(--ease),background .3s}
+.also-row:hover{padding-left:14px;background:linear-gradient(90deg,var(--gold-soft),transparent 60%)}
+.also-row:focus-visible{outline:1px solid var(--gold);outline-offset:-1px}
+.also-row .nm{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.6vw,2.2rem);line-height:1.1;letter-spacing:-.02em}
+.also-row .ty{font-size:.78rem;color:var(--gold)}
+.also-row .ds{font-size:.88rem;color:var(--bone-2);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.also-row .ic{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.also-row .ic i{display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--line);border-radius:50%}
+.also-row .ic img{width:14px;height:14px}
+
+/* case study overlay */
+.case{position:fixed;inset:0;z-index:75;background:var(--ink);overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;transform:translateY(28px);transition:opacity .5s,transform .7s var(--ease),visibility .5s}
+.case.on{opacity:1;visibility:visible;transform:none}
+.case-bar{position:sticky;top:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:22px var(--gutter);font-size:.82rem;color:var(--bone-3);background:linear-gradient(var(--ink) 40%,transparent)}
+.case-x{border:1px solid var(--gold);border-radius:8px;padding:9px 16px;font-size:.85rem;color:var(--bone);transition:background .3s}
+.case-x:hover{background:var(--gold-soft)}
+.case-body{max-width:1040px;margin:0 auto;padding:10px var(--gutter) 16vh}
+.case-hero{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--ink-3)}
+.case-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.case-hero .big{position:absolute;left:28px;bottom:10px;font-family:var(--serif);font-size:clamp(6rem,18vw,14rem);line-height:.9;color:rgba(255,255,255,.14);letter-spacing:-.05em}
+.case h2{font-family:var(--serif);font-weight:400;font-size:clamp(3.4rem,11vw,9rem);line-height:.95;letter-spacing:-.04em;margin:56px 0 12px}
+.case .sub{font-size:clamp(1.05rem,1.8vw,1.4rem);color:var(--bone-2)}
+.case-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;margin-top:70px;align-items:start}
+.case-copy p{font-size:1.1rem;line-height:1.75;color:var(--bone-2)}
+.case-copy p+p{margin-top:1.3em}
+.case-copy p:first-child{color:var(--bone)}
+.facts div{border-top:1px solid var(--line);padding:14px 0}
+.facts dt{font-size:.74rem;color:var(--bone-3);margin-bottom:3px}
+.facts dd{font-size:.95rem;color:var(--bone);line-height:1.45}
+.facts .tags{padding-top:4px}
+.case-blocks{display:grid;grid-template-columns:1fr 1fr;gap:44px 48px;margin-top:90px}
+.case-blocks div{border-top:1px solid var(--line-strong);padding-top:20px}
+.case-blocks h4{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.4vw,2.1rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:10px}
+.case-blocks p{font-size:.95rem;line-height:1.7;color:var(--bone-2)}
+.case-shots{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:90px}
+.case-shots figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--ink-3);aspect-ratio:16/10}
+.case-shots img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:900px){
+  .card.cs{flex-basis:84vw}
+  .also-row{grid-template-columns:1fr;gap:8px;padding:20px 0}
+  .also-row .ic{justify-content:flex-start;margin-top:6px}
+  .case-grid,.case-blocks,.case-shots{grid-template-columns:1fr}
+  .case-grid{gap:36px;margin-top:44px}
+  .case-blocks{margin-top:56px}
+}
+
+/* system-flow diagram */
+.dg{margin:90px 0 0}
+.dg h4{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.4vw,2.1rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:8px}
+.dg .lede{font-size:.95rem;color:var(--bone-2);max-width:62ch;margin-bottom:22px}
+.dg-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--ink-2);padding:14px 10px 6px}
+.dg svg{display:block;width:100%;min-width:780px;height:auto;color:var(--bone-2);font-family:var(--sans)}
+.dg figcaption{font-size:.85rem;color:var(--bone-3);line-height:1.6;margin-top:14px;max-width:70ch}
+.dg-life{stroke:var(--line-strong);stroke-dasharray:2 6}
+.dg-box{fill:var(--ink-3);stroke:var(--line-strong)}
+.dg-name{fill:var(--bone);font-size:13px}
+.dg-sub{fill:var(--bone-3);font-size:11px}
+.dg-arrow{stroke:var(--bone-2);stroke-width:1.4;fill:none}
+.dg-dot{fill:var(--bone-2)}
+.dg-lbl{fill:var(--bone);font-size:12px;paint-order:stroke;stroke:var(--ink-2);stroke-width:7px;stroke-linejoin:round}
+.dg-num-c{fill:none;stroke:var(--line-strong)}
+.dg-num{fill:var(--bone-2);font-size:11px}
+.dg-chip{fill:var(--ink-3);stroke:var(--line-strong)}
+.dg-chip-t{fill:var(--bone-2);font-size:11px}
+.dg-note{fill:var(--bone-3);font-size:11px;font-style:italic}
+.dg-hot{stroke:var(--gold)}
+.dg-hot-dot{fill:var(--gold)}
+.dg-hot-chip{fill:var(--gold-soft);stroke:var(--gold)}
+.dg-hot-t{fill:var(--gold);font-size:11px}
+/* tech-stack flowchart */
+.dg-zone{fill:none;stroke:var(--line-strong);stroke-dasharray:4 5}
+.dg-zone-hot{fill:var(--gold-soft);stroke:var(--gold);stroke-dasharray:none}
+.dg-ztitle{fill:var(--bone-3);font-size:11px;letter-spacing:.14em}
+.dg-ztitle-hot{fill:var(--gold)}
+.dg-ext{stroke-dasharray:3 4}
+.dg-box-hot{fill:var(--ink-3);stroke:var(--gold)}
+.dg-name-l{fill:var(--bone);font-size:13px}
 /* reveal */
 .rv{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .rv.on{opacity:1;transform:none}
 
 @media (max-width:900px){
+  .tl{grid-template-columns:1fr;gap:34px;margin-top:40px}
+  .tl::before{left:6px;right:auto;top:6px;bottom:6px;width:1px;height:auto}
+  .tl-fill{left:6px;top:6px;width:1px;height:0;transition:height 2.6s cubic-bezier(.65,0,.35,1)}
+  .tl.on .tl-fill{width:1px;height:calc(100% - 12px)}
+  .tl-item{padding:0 0 0 36px}
   .open{display:none}
   .about-grid .copy,.stats{grid-column:1/-1}
   .portrait{grid-column:1/-1;max-width:340px}
@@ -300,32 +411,46 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
   </div>
 </section>
 
+<section id="path">
+  <div class="path">
+    <h3 class="serif rv">Path so far</h3>
+    <ol class="tl" id="tl">
+      <li class="tl-fill" aria-hidden="true"></li>
+      <li class="tl-item" style="--i:0"><time>Aug 2022</time><b>B.Eng Software Engineering</b><small>Universiti Kebangsaan Malaysia</small></li>
+      <li class="tl-item" style="--i:1"><time>2023 – Present</time><b>Freelance FYP Helper</b><small>Freelance</small></li>
+      <li class="tl-item" style="--i:2"><time>Sep 2025</time><b>IT Risk Assurance Intern</b><small>PricewaterhouseCoopers (PwC) Malaysia</small></li>
+      <li class="tl-item" style="--i:3"><time>May 2026</time><b>IT Risk &amp; Security Trainee</b><small>MYEG Group / Zetrix</small></li>
+      <li class="tl-item" style="--i:4"><time>May 2026</time><b>Full Stack Software Engineer</b><small>MYEG Group / Zetrix</small></li>
+      <li class="tl-item now" style="--i:5"><time>Sep 2026</time><b>Software Engineer Intern</b><small>xSolla</small></li>
+    </ol>
+  </div>
+</section>
+
 <section id="work">
   <div class="work-head">
     <h2 class="h-xl serif rv">Selected<br>work</h2>
-    <p class="rv">Systems I have designed, built and shipped, across healthcare, sustainability, security tooling and AI.</p>
+    <p class="rv">Three systems in depth, across healthcare, security awareness and open-source compliance. Open one for the full case study.</p>
   </div>
   <div class="hs" id="hs">
     <div class="hs-pin">
       <div class="hs-track" id="track"></div>
       <div class="hs-bar"><i id="hsBar"></i></div>
-      <div class="hs-count" id="hsCount">01 / 17</div>
+      <div class="hs-count" id="hsCount">01 / 03</div>
     </div>
   </div>
 </section>
 
+<section id="also">
+  <div class="also-head"><h3 class="serif rv">Also built</h3></div>
+  <div class="also" id="alsoList"></div>
+</section>
+
 <section id="background">
   <span class="eyebrow">Background</span>
-  <h2 class="h-xl serif rv">Experience</h2>
+  <h2 class="h-xl serif rv">Credentials</h2>
   <div class="bg-grid">
     <div class="bg-col rv">
-      <h4>Work</h4>
-      <div class="row"><time>Sep 2026 – Jan 2027</time><div>Software Engineer Intern<small>xSolla</small></div></div>
-      <div class="row"><time>May 2026 – Sep 2026</time><div>Full Stack Software Engineer<small>MYEG Group / Zetrix</small></div></div>
-      <div class="row"><time>May 2026 – Sep 2026</time><div>IT Risk &amp; Security Trainee<small>MYEG Group / Zetrix</small></div></div>
-      <div class="row"><time>Sep 2025 – Mar 2026</time><div>IT Risk Assurance Intern<small>PricewaterhouseCoopers (PwC) Malaysia</small></div></div>
-      <div class="row"><time>2023 – Present</time><div>Freelance FYP Helper</div></div>
-      <h4 style="margin-top:50px">Leadership</h4>
+      <h4>Leadership</h4>
       <div class="row"><time>2025</time><div>Head of Safety &amp; Logistics<small>Parlimen Mahasiswa Universiti Kebangsaan Malaysia (PMUKM), UKM</small></div></div>
       <div class="row"><time>2024</time><div>Head of Foreign &amp; International Affairs<small>Persatuan Mahasiswa Fakulti Teknologi Sains Maklumat (PERTAMA), UKM</small></div></div>
       <div class="row"><time>2024</time><div>Observer<small>Jawatankuasa Pemilihan Majlis Perwakilan Pelajar (JPMPP), UKM</small></div></div>
@@ -384,6 +509,11 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
 
 <footer><span>© 2026 Noor Azizee Noor Azrul</span><span>Designed and built by hand</span></footer>
 
+<div class="case" id="case" role="dialog" aria-modal="true" aria-labelledby="cTitle" aria-hidden="true">
+  <div class="case-bar"><span>Case study</span><button class="case-x" id="cX">&#10005;&nbsp; Close</button></div>
+  <article class="case-body" id="caseBody"></article>
+</div>
+
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="m-box">
     <div class="m-media" id="mMedia">
@@ -409,7 +539,7 @@ const ICON={
  'mysql':'mysql','firebase':'firebase','mongodb':'mongodb','cloudinary':'cloudinary','git':'git','github':'github','docker':'docker','postman':'postman',
  'postgresql':'postgresql','supabase':'supabase','vite':'vite','android':'android','pandas':'pandas','google maps':'googlemaps','google maps api':'googlemaps','gemini':'googlegemini','gemini ai':'googlegemini',
  'fastapi':'fastapi','sqlite':'sqlite','chart.js':'chartdotjs','livewire':'livewire','prisma':'prisma','spotify api':'spotify','vercel':'vercel','vitest':'vitest','chrome extension':'googlechrome','ffmpeg':'ffmpeg','ethereum':'ethereum',
- 'bootstrap':'bootstrap','electron':'electron'
+ 'node.js':'nodedotjs','mailgun':'mailgun','cloud functions':'firebase','web3.js':'web3dotjs','express':'express','nginx':'nginx','bootstrap':'bootstrap','electron':'electron'
 };
 function pill(name){
   const slug=ICON[name.toLowerCase()];
@@ -422,21 +552,199 @@ const mobile=()=>matchMedia('(max-width:900px)').matches;
 /* project cards */
 const track=$('#track');
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-PROJECTS.forEach((p,i)=>{
+
+/* ---------- case studies (full detail) ---------- */
+const CASES=[
+ {id:'healthsecure',num:'00',name:'HealthSecure',sub:'Blockchain-based healthcare records',
+  gradient:'linear-gradient(135deg,#023e8a 0%,#00b4d8 100%)',
+  images:['images/healthsecure-1.jpg','images/healthsecure-2.jpg','images/healthsecure-3.jpg'],
+  summary:'A healthcare system where patients, not hospitals, decide who can see their records.',
+  p:['HealthSecure is my final year project at UKM. Doctors request access to a patient’s records, the patient approves or revokes it through a Solidity smart contract, and every view is logged on-chain as an audit event.',
+     'It has three parts: a Flutter app for patients and doctors, a React admin dashboard, and Firebase for data and notifications. The contract runs on a local Hardhat and Ganache chain.'],
+  facts:[['Context','Final year project, UKM'],['Recognition','Digital Innovation Award (KID), Sep 2025'],['Scale','21 app screens, 6 admin pages, 5 cloud functions'],['Chain','One access-control contract with on-chain audit events']],
+  stack:['Flutter','Dart','React','Solidity','Hardhat','Ganache','Firebase','Gemini AI'],
+  blocks:[['Patients hold the keys','A Solidity AccessControl contract keeps a patient-to-doctor permission map. Doctors request, patients approve or revoke, and each record view emits a DataViewed event for the audit trail.'],
+          ['Records stay off-chain','Health data lives in Firebase. Only a record hash and a storage pointer go on-chain, so the chain proves what was recorded without exposing it.'],
+          ['One app, two roles','The Flutter app gives patients their records, appointments and notifications, and gives doctors a patient list plus appointment and record views. An AI health assistant is powered by Gemini.'],
+          ['An admin who sees the system','The React dashboard onboards doctors, manages roles, runs backups and embeds a Ganache block explorer. Firestore security rules and cloud functions handle access and email notifications.']]},
+ {id:'secureaware',num:'01',name:'SecureAware Portal',sub:'Security awareness and phishing simulation platform',
+  gradient:'linear-gradient(135deg,#06403a 0%,#2ec4b6 100%)',images:[],
+  summary:'Run phishing simulations and staff assessments, then report on them in one place.',
+  p:['SecureAware Portal runs security awareness programmes: simulated phishing campaigns and staff assessments, with admin dashboards and automated reporting.',
+     'It is a Node.js and PostgreSQL backend with a single-page front end, deployed with Docker behind an Nginx reverse proxy.'],
+  facts:[['Scale','110 API routes, 64 database migrations'],['Programmes','Phishing simulation and staff assessment'],['Reports','Executive and campaign reports as Word documents'],['Delivery','Dockerised, with an admin user manual']],
+  stack:['JavaScript','Node.js','Express','PostgreSQL','Docker','Nginx'],
+  blocks:[['Two apps, one database','Employee quiz-taking runs as a separate public app that never receives admin secrets. The admin app has its own route, and Nginx splits traffic between them.'],
+          ['Keys never reach the browser','Phishing campaigns run through a server-side proxy to GoPhish, so its API key stays on the server. Sessions live in PostgreSQL, with rate limiting and an audit log.'],
+          ['Reports in one click','Executive summary and campaign reports are generated as Word documents from templates, with charts rendered on the server.'],
+          ['Runs on a schedule','Quiz invitations, reminders, escalations and data-retention cleanup run from schedulers, and load-test scripts check the app under sustained traffic.']]},
+ {id:'osslicense',num:'02',name:'OSS License Review',sub:'Open-source license risk review',
+  gradient:'linear-gradient(135deg,#2d1450 0%,#9b5de5 100%)',images:[],
+  summary:'Turn an open-source dependency report into a clear approve-or-review decision.',
+  p:['OSS License Review reads an OSS Review Toolkit (ORT) analyzer export and tells you, package by package, whether each dependency’s license is acceptable.',
+     'Every declared license becomes Approved, Approved with Controls, Risk Review Required or Denied, using a license policy encoded in a small classification engine. The app runs in the browser.'],
+  facts:[['Policy','13 license categories mapped to 4 statuses'],['Reference data','SPDX, ScanCode LicenseDB, SPDX exceptions, Blue Oak tiers'],['Input','ORT spreadsheet or JSON, or a file picked from S3'],['Tests','22 Vitest cases for the classifier']],
+  stack:['React','Vite','Tailwind','JavaScript','Vitest'],
+  blocks:[['Policy as code','Thirteen ScanCode license categories map to four review statuses, with notes like Entitlement Required and Allowlist Only where a category carries a condition.'],
+          ['Reads SPDX expressions','Compound expressions are parsed properly. For OR choices the engine takes the worst-case branch, and recognised exceptions such as the Classpath exception relax the result.'],
+          ['Bring your own export','Upload an ORT spreadsheet or analyzer JSON, or pick a file from S3, then filter, search and export the reviewed results to Excel.'],
+          ['Tested like a product','22 unit tests cover the classifier, so a policy change is checked before it reaches a review.']]}
+];
+const ALSO_TYPE={coolshot:'Web app',sustainflow:'Web platform',fireplace:'Mobile app',etl:'Data pipeline',studentgo:'Mobile app',nerfpawn:'Web platform',lightdrug:'Mobile app',acemyinterview:'Web app',autoreel:'Automation',sherlockui:'Security tool',onepohub:'Web app',acms:'Web app',guessify:'Web app',unfollowers:'Browser extension'};
+const CASE_IDS=new Set(CASES.map(c=>c.id));
+
+/* gallery: only the case studies */
+CASES.forEach(c=>{
   const el=document.createElement('article');
-  el.className='card';el.tabIndex=0;el.setAttribute('role','button');el.setAttribute('aria-label','Open '+p.name);
-  const img=(p.images||[]).find(x=>/\.(jpe?g|png|webp)$/i.test(x));
+  el.className='card cs';el.tabIndex=0;el.setAttribute('role','button');el.setAttribute('aria-label','Read the case study: '+c.name);
+  const img=c.images[0];
   el.innerHTML=
-    '<div class="shot" style="background:'+p.gradient+'">'+(img?'<img decoding="async" src="'+esc(img)+'" alt="">':'')+
-    '<span class="num">'+esc(p.num)+'</span><span class="go">↗</span></div>'+
-    '<h3>'+esc(p.name)+'<small>'+esc(p.num)+'</small></h3>'+
-    '<p>'+esc(p.desc)+'</p>'+
-    '<div class="tags">'+p.tags.slice(0,5).map(pill).join('')+'</div>';
-  const open=()=>p.link?window.open(p.link,'_blank','noopener'):openModal(i);
+    '<div class="shot" style="background:'+c.gradient+'">'+(img?'<img decoding="async" src="'+esc(img)+'" alt="">':'')+
+    '<span class="num">'+esc(c.num)+'</span><span class="go">↗</span></div>'+
+    '<h3>'+esc(c.name)+'<small>'+esc(c.num)+'</small></h3>'+
+    '<p>'+esc(c.summary)+'</p>'+
+    '<div class="tags">'+c.stack.slice(0,5).map(pill).join('')+'</div>'+
+    '<span class="more">Read the case study →</span>';
+  const open=()=>openCase(c.id);
   el.addEventListener('click',open);
   el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
   track.appendChild(el);
 });
+
+/* also built */
+(function(){
+  const list=$('#alsoList');
+  PROJECTS.forEach((p,i)=>{
+    if(CASE_IDS.has(p.id))return;
+    const row=document.createElement('div');
+    row.className='also-row';row.tabIndex=0;row.setAttribute('role','button');
+    const icons=p.tags.slice(0,5).map(t=>{const sl=ICON[t.toLowerCase()];return sl?'<i title="'+esc(t)+'"><img alt="'+esc(t)+'" decoding="async" src="images/icons/'+sl+'.svg" onerror="this.remove()"></i>':''}).join('');
+    row.innerHTML='<span class="nm">'+esc(p.name)+'</span><span class="ty">'+esc(ALSO_TYPE[p.id]||'Project')+'</span><span class="ds">'+esc(p.desc)+'</span><span class="ic">'+icons+'</span>';
+    const open=()=>p.link?window.open(p.link,'_blank','noopener'):openModal(i);
+    row.addEventListener('click',open);
+    row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+    list.appendChild(row);
+  });
+})();
+
+
+
+/* HealthSecure: where each part lives (drawn from the real config and service files) */
+function hsStack(){
+  const T=(x,y,cls,txt,a)=>'<text class="'+cls+'" x="'+x+'" y="'+y+'"'+(a?' text-anchor="'+a+'"':'')+'>'+txt+'</text>';
+  const R=(x,y,w,h,cls,rx)=>'<rect class="'+cls+'" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+(rx||10)+'"/>';
+  const box=(x,y,w,h,name,subs,o)=>{o=o||{};let r=R(x,y,w,h,(o.hot?'dg-box-hot':'dg-box')+(o.ext?' dg-ext':''));
+    r+=T(x+w/2,y+24,'dg-name',name,'middle');subs.forEach((t,i)=>{r+=T(x+w/2,y+42+i*16,'dg-sub',t,'middle')});return r};
+  const arrow=(x1,y1,x2,y2,o)=>{o=o||{};const hot=!!o.hot,id=hot?'dgH':'dgA';
+    return '<line class="dg-arrow'+(hot?' dg-hot':'')+'" x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" marker-end="url(#'+id+')"'+(o.both?' marker-start="url(#'+id+')"':'')+(hot?' style="color:var(--gold)"':'')+'/>'};
+  let o='<svg viewBox="0 0 1000 510" role="img" aria-label="Architecture flowchart: the Flutter app and React admin talk to a local Ganache chain holding the AccessControl contract, and to Firebase for profiles, records and functions. Hardhat deploys the contract. Gemini and Mailgun are external services.">';
+  o+='<defs><marker id="dgA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>'+
+     '<marker id="dgH" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--gold)"/></marker></defs>';
+  /* zones */
+  o+=R(16,108,280,378,'dg-zone dg-zone-hot',14)+T(34,130,'dg-ztitle dg-ztitle-hot','BLOCKCHAIN · DEV MACHINE');
+  o+=R(360,108,280,312,'dg-zone',14)+T(378,130,'dg-ztitle','CLIENTS');
+  o+=R(704,108,280,316,'dg-zone',14)+T(722,130,'dg-ztitle','GOOGLE FIREBASE');
+  /* chain zone */
+  o+=box(36,146,240,230,'Ganache',['local private chain','chainId 1337 · port 7545'],{hot:1});
+  o+=R(52,214,208,92,'dg-hot-chip',10)+T(156,240,'dg-name','AccessControl.sol','middle')+T(156,258,'dg-hot-t','who may see which record','middle')+T(156,274,'dg-hot-t','plus on-chain audit events','middle');
+  o+=box(36,410,240,56,'Hardhat',['compile and deploy · Solidity 0.8.28']);
+  o+=arrow(156,410,156,376,{hot:1})+T(166,398,'dg-hot-t','deploys');
+  /* clients */
+  o+=box(380,146,240,104,'Flutter app',['Patients and doctors','web3dart · Firebase SDK','copies chain events to Firestore']);
+  o+=box(380,296,240,104,'React admin',['Admin dashboard','web3.js · Firebase SDK']);
+  /* firebase */
+  o+=box(724,146,240,44,'Authentication',[]);
+  o+=box(724,204,240,64,'Firestore',['profiles, records, access_events']);
+  o+=box(724,282,240,44,'Storage',[]);
+  o+=box(724,340,240,64,'Cloud Functions',['doctor accounts, email']);
+  /* externals */
+  o+=box(410,36,180,44,'Gemini API',[],{ext:1});
+  o+=box(744,452,200,44,'Mailgun',[],{ext:1});
+  /* arrows */
+  o+=arrow(380,198,276,198,{hot:1,both:1})+T(328,174,'dg-lbl','JSON-RPC','middle')+T(328,187,'dg-lbl','over Wi-Fi','middle');
+  o+=arrow(380,348,276,348,{hot:1,both:1})+T(328,336,'dg-lbl','WebSocket','middle');
+  o+=arrow(620,198,704,198,{both:1})+T(662,174,'dg-lbl','Firebase','middle')+T(662,187,'dg-lbl','SDK','middle');
+  o+=arrow(620,348,704,348,{both:1})+T(662,324,'dg-lbl','Firestore','middle')+T(662,337,'dg-lbl','+ functions','middle');
+  o+=arrow(500,146,500,80,{both:1})+T(512,118,'dg-lbl','HTTPS');
+  o+=arrow(844,404,844,452)+T(856,432,'dg-lbl','email');
+  o+='</svg>';
+  return '<figure class="dg"><h4>Where the blockchain lives</h4>'+
+    '<p class="lede">The chain is not a public network. It is a private Ganache chain on the developer machine, and only the access rules and audit events live on it.</p>'+
+    '<div class="dg-scroll">'+o+'</div>'+
+    '<figcaption>Hardhat deploys the AccessControl contract to Ganache. The Flutter app reaches the chain over Wi-Fi and the admin dashboard over a local websocket. Profiles, files and notifications live in Firebase, with Gemini and Mailgun as external services.</figcaption></figure>';
+}
+
+/* HealthSecure: how an access request moves (drawn from the real service calls) */
+function hsDiagram(){
+  const X={d:140,p:320,c:520,f:730,a:910};
+  const lanes=[['d','Doctor app','Flutter'],['p','Patient app','Flutter'],['c','AccessControl','Ganache chain'],['f','Firebase','Firestore · Storage'],['a','Admin','React dashboard']];
+  const rows=[
+    ['d','c','requestAccess(patient)'],
+    ['p','c','approveAccess(doctor)',1],
+    ['d','c','hasAccess(), then viewData(patient)'],
+    ['d','f','reads patient HealthData'],
+    ['d','c','recordHealthData(hash, pointer)'],
+    ['p','c','revokeAccess(doctor)'],
+    ['c','f','listener logs events'],
+    ['a','f','reads logs and users'],
+    ['a','c','block explorer (websocket)']
+  ];
+  const side={1:['chip','pending'],2:['chip','granted',1],3:['note','emits DataViewed'],5:['note','emits HealthDataRecorded'],6:['chip','revoked']};
+  const Y0=118,DY=46,H=Y0+(rows.length-1)*DY+50;
+  let o='<svg viewBox="0 0 1000 '+H+'" role="img" aria-label="Sequence diagram: a doctor requests access on the AccessControl contract, the patient approves, the doctor views and records data, events are logged to Firestore, and the admin dashboard reads Firestore and the chain.">';
+  o+='<defs><marker id="dgA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>'+
+     '<marker id="dgH" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--gold)"/></marker></defs>';
+  lanes.forEach(l=>{
+    const x=X[l[0]];
+    o+='<line class="dg-life" x1="'+x+'" y1="62" x2="'+x+'" y2="'+(H-14)+'"/>'+
+       '<rect class="dg-box" x="'+(x-75)+'" y="14" width="150" height="46" rx="9"/>'+
+       '<text class="dg-name" x="'+x+'" y="34" text-anchor="middle">'+l[1]+'</text>'+
+       '<text class="dg-sub" x="'+x+'" y="50" text-anchor="middle">'+l[2]+'</text>';
+  });
+  rows.forEach((r,i)=>{
+    const y=Y0+i*DY,x1=X[r[0]],x2=X[r[1]],hot=!!r[3],dir=x2>x1?1:-1;
+    o+='<circle class="dg-num-c" cx="26" cy="'+y+'" r="11"/><text class="dg-num" x="26" y="'+(y+4)+'" text-anchor="middle">'+(i+1)+'</text>';
+    o+='<circle class="'+(hot?'dg-hot-dot':'dg-dot')+'" cx="'+x1+'" cy="'+y+'" r="3.5"/>';
+    o+='<line class="dg-arrow'+(hot?' dg-hot':'')+'" x1="'+x1+'" y1="'+y+'" x2="'+(x2-dir*3)+'" y2="'+y+'" marker-end="url(#'+(hot?'dgH':'dgA')+')" style="'+(hot?'color:var(--gold)':'')+'"/>';
+    o+='<text class="dg-lbl" x="'+((x1+x2)/2)+'" y="'+(y-9)+'" text-anchor="middle">'+r[2]+'</text>';
+    const sd=side[i+1];
+    if(sd){
+      const sx=X.c+14;
+      if(sd[0]==='chip'){
+        const w=sd[1].length*7+18,hot2=!!sd[2];
+        o+='<rect class="'+(hot2?'dg-hot-chip':'dg-chip')+'" x="'+sx+'" y="'+(y-11)+'" width="'+w+'" height="22" rx="11"/>'+
+           '<text class="'+(hot2?'dg-hot-t':'dg-chip-t')+'" x="'+(sx+w/2)+'" y="'+(y+4)+'" text-anchor="middle">'+sd[1]+'</text>';
+      }else{
+        o+='<text class="dg-note" x="'+sx+'" y="'+(y+4)+'">'+sd[1]+'</text>';
+      }
+    }
+  });
+  o+='</svg>';
+  return '<figure class="dg"><h4>How an access request moves</h4>'+
+    '<p class="lede">Follow the numbers top to bottom. The chain holds the permission, Firebase holds the records, and events join the two.</p>'+
+    '<div class="dg-scroll">'+o+'</div>'+
+    '<figcaption>Access is decided on the chain. The app checks it before opening a patient’s records, and the events the contract emits are logged to Firestore for the admin dashboard.</figcaption></figure>';
+}
+
+/* case overlay */
+const caseEl=$('#case'),caseBody=$('#caseBody');
+function openCase(id){
+  const c=CASES.find(x=>x.id===id);if(!c)return;
+  const hero=c.images[0]?'<img decoding="async" src="'+esc(c.images[0])+'" alt="'+esc(c.name)+' screenshot">':'<span class="big">'+esc(c.num)+'</span>';
+  const rest=c.images.slice(1);
+  caseBody.innerHTML=
+    '<div class="case-hero" style="background:'+c.gradient+'">'+hero+'</div>'+
+    '<h2 id="cTitle">'+esc(c.name)+'</h2><p class="sub">'+esc(c.sub)+'</p>'+
+    '<div class="case-grid"><div class="case-copy">'+c.p.map(t=>'<p>'+esc(t)+'</p>').join('')+'</div>'+
+    '<dl class="facts">'+c.facts.map(f=>'<div><dt>'+esc(f[0])+'</dt><dd>'+esc(f[1])+'</dd></div>').join('')+
+    '<div><dt>Stack</dt><dd class="tags">'+c.stack.map(pill).join('')+'</dd></div></dl></div>'+
+    (c.id==='healthsecure'?hsStack()+hsDiagram():'')+'<div class="case-blocks">'+c.blocks.map(b=>'<div><h4>'+esc(b[0])+'</h4><p>'+esc(b[1])+'</p></div>').join('')+'</div>'+
+    (rest.length?'<div class="case-shots">'+rest.map(r=>'<figure><img loading="lazy" decoding="async" src="'+esc(r)+'" alt=""></figure>').join('')+'</div>':'');
+  caseEl.classList.add('on');caseEl.setAttribute('aria-hidden','false');caseEl.scrollTop=0;
+  document.body.style.overflow='hidden';$('#cX').focus({preventScroll:true});
+}
+function closeCase(){if(!caseEl.classList.contains('on'))return;caseEl.classList.remove('on');caseEl.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+$('#cX').addEventListener('click',closeCase);
 const end=document.createElement('div');end.className='card end';
 end.innerHTML='<a href="https://github.com/TwoTapz" target="_blank" rel="noopener">More on<br>GitHub ↗</a>';
 track.appendChild(end);
@@ -446,7 +754,7 @@ $('#projCount').textContent=PROJECTS.length;
 /* pinned horizontal scroll */
 const hs=$('#hs'),bar=$('#hsBar'),count=$('#hsCount');
 const cards=[...track.querySelectorAll('.card:not(.end)')];
-let maxX=0,stTop=0,stH=1,hsTop=0,hsH=1,docMax=1,lastOn=-1,lastIdx=-1;
+let moonParked=false,maxX=0,stTop=0,stH=1,hsTop=0,hsH=1,docMax=1,lastOn=-1,lastIdx=-1;
 function measure(){
   if(mobile()||reduce){hs.style.height='';track.style.transform='';maxX=0}
   else{maxX=Math.max(0,track.scrollWidth-innerWidth);hs.style.height=(innerHeight+maxX)+'px'}
@@ -465,6 +773,11 @@ function onScroll(){
     const t=Math.min(1,y/vh);
     moonEl.style.transform='translate3d('+(t*8)+'vw,'+(-t*8)+'vh,0) scale('+(1-t*.55)+')';
     moonEl.style.opacity=y>vh*1.2?Math.max(.12,1-(y-vh*1.2)/vh):1;
+    moonParked=false;
+  }else if(!moonParked){
+    moonEl.style.transform='translate3d(8vw,-8vh,0) scale(.45)';
+    moonEl.style.opacity=.12;
+    moonParked=true;
   }
   /* statement reveal (only touch the DOM when the count changes) */
   if(y>stTop-vh*1.2&&y<stTop+stH+vh){
@@ -507,7 +820,7 @@ function loop(){
 function goTo(y){target=Math.max(0,Math.min(docMax,y));if(!raf)raf=requestAnimationFrame(loop)}
 if(smooth){
   addEventListener('wheel',e=>{
-    if(e.ctrlKey||e.defaultPrevented||modalEl.classList.contains('on')||ovEl.classList.contains('on'))return;
+    if(e.ctrlKey||e.defaultPrevented||modalEl.classList.contains('on')||ovEl.classList.contains('on')||caseEl.classList.contains('on'))return;
     e.preventDefault();
     let dy=e.deltaY;if(e.deltaMode===1)dy*=32;else if(e.deltaMode===2)dy*=innerHeight;
     if(!raf){sPos=target=scrollY}
@@ -530,25 +843,30 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{measure()
 measure();onScroll();
 if(reduce)words.forEach(w=>w.classList.add('on'));
 
+/* timeline */
+(function(){const tl=$('#tl');if(!tl)return;
+  if(reduce){tl.classList.add('on');return}
+  const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){tl.classList.add('on');o.disconnect()}}),{threshold:.4});o.observe(tl)})();
+
 /* reveal on view */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.rv').forEach(e=>io.observe(e));
 
 /* toolkit strip */
-const TOOLKIT=['Java','Python','C++','JavaScript','TypeScript','PHP','Golang','Dart','Kotlin','Solidity','React','Next.js','Flutter','Laravel','NodeJS','Flask','Tailwind','HTML','CSS','MySQL','Firebase','MongoDB','Cloudinary','Git','GitHub','Docker','Postman','Power BI','RapidMiner','REST API','ITGC','RMiT','TRM','IT Risk','Cybersecurity','Data Analytics','Agile/Scrum','Waterfall'];
+const TOOLKIT=['Java','Python','C++','JavaScript','TypeScript','PHP','Golang','Dart','Kotlin','Solidity','React','Next.js','Flutter','Laravel','NodeJS','Flask','Tailwind','HTML','CSS','MySQL','Firebase','MongoDB','Cloudinary','Git','GitHub','Docker','Postman','Power BI','RapidMiner','REST API','Cloud Functions','Nginx','Mailgun','Web3.js','web3dart','GoPhish','ITGC','RMiT','TRM','IT Risk','Cybersecurity','Data Analytics','Agile/Scrum','Waterfall'];
 (function(){const h=TOOLKIT.map(pill).join('');$('#strip').innerHTML=h+h})();
 
 /* toolkit accordion */
 const GROUPS=[
  ['Frontend',['React','Next.js','TypeScript','JavaScript','HTML','CSS','Tailwind','Vite']],
  ['Mobile',['Flutter','Dart','Kotlin','Android']],
- ['Languages & Backend',['Java','Python','C++','PHP','Golang','NodeJS','Laravel','Flask','FastAPI','REST API']],
+ ['Languages & Backend',['Java','Python','C++','PHP','Golang','NodeJS','Laravel','Flask','FastAPI','REST API','Cloud Functions']],
  ['Databases',['MySQL','PostgreSQL','MongoDB','Firebase','Supabase','SQLite','Prisma']],
  ['AI',['Gemini AI','Vapi','Whisper']],
- ['Blockchain',['Solidity','Hardhat','Ganache','Ethereum']],
- ['DevOps & Tools',['Git','GitHub','Docker','Postman','Vercel','Cloudinary']],
+ ['Blockchain',['Solidity','Hardhat','Ganache','Ethereum','Web3.js','web3dart']],
+ ['DevOps & Tools',['Git','GitHub','Docker','Postman','Vercel','Cloudinary','Nginx','Mailgun']],
  ['Data & Analytics',['Power BI','RapidMiner','Pandas','Matplotlib','BeautifulSoup','Data Analytics']],
- ['Risk & Governance',['ITGC','RMiT','TRM','IT Risk','Cybersecurity','Agile/Scrum','Waterfall']]
+ ['Risk & Governance',['ITGC','RMiT','TRM','IT Risk','Cybersecurity','GoPhish','Agile/Scrum','Waterfall']]
 ];
 (function(){
   const acc=$('#acc');
@@ -603,7 +921,7 @@ modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
 $('#mPrev').addEventListener('click',()=>{const n=PROJECTS[cur].images.length;imgIdx=(imgIdx-1+n)%n;renderMedia()});
 $('#mNext').addEventListener('click',()=>{const n=PROJECTS[cur].images.length;imgIdx=(imgIdx+1)%n;renderMedia()});
 addEventListener('keydown',e=>{
-  if(e.key==='Escape'){closeModal();menu(false)}
+  if(e.key==='Escape'){closeModal();closeCase();menu(false)}
   if(modal.classList.contains('on')&&PROJECTS[cur].images.length>1){
     if(e.key==='ArrowRight')$('#mNext').click();
     if(e.key==='ArrowLeft')$('#mPrev').click();
